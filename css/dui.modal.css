@@ -1,0 +1,171 @@
+/* dui-modal.css */
+
+/* 1) Kaynak elemanlar ilk yüklemede gizli olsun */
+.dui-modal-src {
+  display: none;
+}
+
+/* 2) Body scroll kilidi */
+.dui-modal-open {
+  overflow: hidden;
+}
+
+/* 3) Backdrop */
+.dui-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, .5);
+  opacity: 0;
+  transition: opacity .15s ease;
+}
+
+.dui-backdrop.show {
+  opacity: .5;
+}
+
+/* 4) Overlay + merkezleme */
+.dui-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1050;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  outline: 0;
+}
+
+.dui-modal.show {
+  opacity: 1;
+}
+
+/* 5) İsteğe bağlı “dialog” görünümü (otomatik eklenir; istersen dialogClass:null deyip kapatırsın) */
+.dui-modal__dialog {
+    /*background: #fff;*/
+    background: hsla(0, 0%, 100%, .6);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .2);
+    max-height: calc(100dvh - 2rem);
+    min-width: 320px;
+    max-width: 90vw;
+    transform: translateY(10px);
+    opacity: 0;
+    transition: transform .2s ease, opacity .2s ease;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    /*Blured*/
+    -webkit-backdrop-filter: blur(5px) saturate(180%);
+    backdrop-filter: blur(5px) saturate(180%);
+    box-shadow: inset .5px 1px 1px 0 hsla(0, 0%, 100%, .125);
+    background: var(--bs-blur-background2) !important;
+}
+
+.dui-modal.show>.dui-modal__dialog {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* 6) Boyut varyantları (çocuğun genişliğini kontrol eder) */
+.dui-modal--sm>.dui-modal__dialog {
+  max-width: 420px;
+}
+
+.dui-modal--md>.dui-modal__dialog {
+  max-width: 640px;
+}
+
+.dui-modal--lg>.dui-modal__dialog {
+  max-width: 820px;
+}
+
+.dui-modal--xl>.dui-modal__dialog {
+  max-width: 1140px;
+}
+
+/* 7) Bootstrap-benzeri bölümler KULLANIRSAN */
+.dui-modal__dialog .modal-header,
+.dui-modal__dialog .dui-modal-header {
+  padding: 14px 16px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dui-modal__dialog .modal-body,
+.dui-modal__dialog .dui-modal-body {
+  padding: 16px;
+  overflow: auto;
+}
+
+.dui-modal__dialog .modal-footer,
+.dui-modal__dialog .dui-modal-footer {
+  padding: 12px 16px;
+  border-top: 1px solid #eee;
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  position: sticky;
+  bottom: 0;
+  /*background: #fff;*/
+}
+
+/* 8) İsteğe bağlı buton stilleri */
+.dui-btn {
+  appearance: none;
+  border: 1px solid #ddd;
+  background: #f8f8f8;
+  border-radius: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+    .dui-btn.primary {
+        background: #1b6ec2;
+        border-color: #1b6ec2;
+        color: #fff;
+    }
+    .dui-btn.secondary {
+        background: #6c757d;
+        border-color: #6c757d;
+        color: #fff;
+    }
+
+.btn-modal-close {
+  position: absolute;
+  right: .5em;
+  top: .5em;
+  box-sizing: content-box;
+  width: 1em;
+  height: 1em;
+  padding: .25em .25em;
+  color: #000;
+  background-color: unset;
+  /* background: transparent url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e") center/1em auto no-repeat; */
+  border: 0;
+  border-radius: .25rem;
+  opacity: .5
+}
+
+.modal-body .border {
+  border: 1px solid #dee2e6 !important;
+}
+
+.modal-body fieldset {
+  min-width: revert;
+  padding: revert;
+  margin: revert;
+  border: unset;
+}
+
+.modal-body fieldset legend {
+  /* margin-left: 1em; */
+  float: revert;
+  width: revert;
+  padding: revert;
+  margin-bottom: revert;
+  line-height: revert;
+  font-size: revert;
+  padding: 5px 15px;
+}
